@@ -1,0 +1,26 @@
+pipeline {
+    agent { label 'Neha' }
+
+    stages {
+        stage('a') {
+            steps {
+                echo 'sending notification'
+                mail to: 'nehamurali1224@gmail.com',
+                     subject: "Build Triggered - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                     body: "The Jenkins build has been triggered successfully."
+            }
+        }
+
+        stage('b') {
+            steps {
+                echo 'testing code'
+            }
+        }
+
+        stage('c') {
+            steps {
+                echo 'checking out code'
+            }
+        }
+    }
+}
